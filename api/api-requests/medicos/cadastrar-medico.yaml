@@ -1,0 +1,24 @@
+name: Cadastrar Medico
+method: POST
+url: http://localhost:8080/medicos
+description: Cadastro de novo médico com endereço completo
+headers:
+  - name: Content-Type
+    value: application/json
+body:
+  content: |
+    {
+      "nome": "Rodrigo Ferreira",
+      "email": "rodrigo.ferreira@voll.med",
+      "crm": "123456",
+      "especialidade": "ortopedia",
+      "endereco": {
+        "logradouro": "rua 1",
+        "bairro": "bairro",
+        "cep": "12345678",
+        "cidade": "Brasilia",
+        "uf": "DF",
+        "numero": "1",
+        "complemento": "complemento"
+      }
+    }
