@@ -7,6 +7,6 @@ public enum Especialidade {
 
   GINECOLOGIA,
 
-  DEMARTOLOGIA;
+  DERMATOLOGIA;
 
 }
