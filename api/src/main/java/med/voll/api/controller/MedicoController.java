@@ -8,12 +8,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import med.voll.api.medico.DadosAtualizacaoMedico;
 import med.voll.api.medico.DadosCadastroMedico;
 import med.voll.api.medico.Medico;
 import med.voll.api.medico.MedicoListagemDTO;
@@ -35,5 +37,12 @@ public class MedicoController {
   @GetMapping("/listar")
   public Page<MedicoListagemDTO> listarMedicos(@PageableDefault(size = 10, sort = { "nome" }) Pageable paginacao) {
     return repository.findAll(paginacao).map(MedicoListagemDTO::new);
+  }
+
+  @PutMapping
+  @Transactional
+  public void atualizarMedico(@RequestBody @Valid DadosAtualizacaoMedico dados) {
+    var medico = repository.getReferenceById(dados.id());
+    medico.atualizarInformacoes(dados);
   }
 }
