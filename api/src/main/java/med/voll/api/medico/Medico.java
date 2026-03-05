@@ -25,6 +25,8 @@ public class Medico {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  private Boolean ativo;
+
   private String nome;
 
   private String email;
@@ -40,6 +42,7 @@ public class Medico {
   private Endereco endereco;
 
   public Medico(DadosCadastroMedico dados) {
+    this.ativo = true;
     this.nome = dados.nome();
     this.email = dados.email();
     this.telefone = dados.telefone();
@@ -58,5 +61,9 @@ public class Medico {
     if (dados.telefone() != null) {
       this.telefone = dados.telefone();
     }
+  }
+
+  public void excluir() {
+    this.ativo = false;
   }
 }
