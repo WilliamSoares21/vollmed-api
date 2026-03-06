@@ -60,9 +60,11 @@ public class MedicoController {
 
   @DeleteMapping("/{id}")
   @Transactional
-  public void excluirMedico(@PathVariable Long id) {
+  public ResponseEntity excluirMedico(@PathVariable Long id) {
     var medico = repository.getReferenceById(id);
     medico.excluir();
+
+    return ResponseEntity.noContent().build();
   }
 
   @GetMapping("/{id}")
