@@ -10,12 +10,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import med.voll.api.endereco.Endereco;
 
 @Entity(name = "Medico")
 @Table(name = "medicos")
-@Getter
 @EqualsAndHashCode(of = "id")
 public class Medico {
 
@@ -40,6 +38,15 @@ public class Medico {
 
   @Embedded
   private Endereco endereco;
+
+  public Long getId() { return id; }
+  public Boolean getAtivo() { return ativo; }
+  public String getNome() { return nome; }
+  public String getEmail() { return email; }
+  public String getTelefone() { return telefone; }
+  public String getCrm() { return crm; }
+  public Especialidade getEspecialidade() { return especialidade; }
+  public Endereco getEndereco() { return endereco; }
 
   public Medico(DadosCadastroMedico dados) {
     this.ativo = true;
