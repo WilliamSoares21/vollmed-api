@@ -1,4 +1,4 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -10,14 +10,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.EqualsAndHashCode;
-import med.voll.api.endereco.Endereco;
+import med.voll.api.domain.endereco.Endereco;
 
 @Entity(name = "Medico")
 @Table(name = "medicos")
 @EqualsAndHashCode(of = "id")
 public class Medico {
 
-  protected Medico() {}
+  protected Medico() {
+  }
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,14 +40,37 @@ public class Medico {
   @Embedded
   private Endereco endereco;
 
-  public Long getId() { return id; }
-  public Boolean getAtivo() { return ativo; }
-  public String getNome() { return nome; }
-  public String getEmail() { return email; }
-  public String getTelefone() { return telefone; }
-  public String getCrm() { return crm; }
-  public Especialidade getEspecialidade() { return especialidade; }
-  public Endereco getEndereco() { return endereco; }
+  public Long getId() {
+    return id;
+  }
+
+  public Boolean getAtivo() {
+    return ativo;
+  }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getTelefone() {
+    return telefone;
+  }
+
+  public String getCrm() {
+    return crm;
+  }
+
+  public Especialidade getEspecialidade() {
+    return especialidade;
+  }
+
+  public Endereco getEndereco() {
+    return endereco;
+  }
 
   public Medico(DadosCadastroMedico dados) {
     this.ativo = true;
