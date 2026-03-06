@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.voll.api.medico.DadosAtualizacaoMedico;
 import med.voll.api.medico.DadosCadastroMedico;
+import med.voll.api.medico.DetalhamentoMedicoDTO;
 import med.voll.api.medico.Medico;
 import med.voll.api.medico.MedicoListagemDTO;
 import med.voll.api.repository.MedicoRepository;
@@ -53,5 +55,11 @@ public class MedicoController {
   public void excluirMedico(@PathVariable Long id) {
     var medico = repository.getReferenceById(id);
     medico.excluir();
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity detalharMedico(@PathVariable Long id) {
+    var medico = repository.getReferenceById(id);
+    return ResponseEntity.ok(new DetalhamentoMedicoDTO(medico));
   }
 }
