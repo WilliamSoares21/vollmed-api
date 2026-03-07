@@ -1,6 +1,5 @@
 package med.voll.api.infra.security;
 
-import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
