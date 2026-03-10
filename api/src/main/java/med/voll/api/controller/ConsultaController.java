@@ -14,7 +14,7 @@ import med.voll.api.domain.consulta.DetalhamentoDeConsultaDTO;
 import med.voll.api.service.ConsultaService;
 
 @RestController
-@RequestMapping("/consulta")
+@RequestMapping("/consultas")
 class ConsultaController {
 
   @Autowired
