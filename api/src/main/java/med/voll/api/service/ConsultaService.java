@@ -53,6 +53,10 @@ public class ConsultaService {
       throw new ValidationException("Especialidade é obrigatoria quando o médico não for escolhido");
     }
 
-    return medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(), dados.data());
+    Medico medico = medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(), dados.data());
+    if (medico == null) {
+      throw new ValidationException("Não há médicos disponíveis para esta especialidade e data.");
+    }
+    return medico;
   }
 }
