@@ -1,5 +1,6 @@
 package med.voll.api.infra.exceptions;
 
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,6 +15,11 @@ public class TratadorDeErros {
   @ExceptionHandler(EntityNotFoundException.class)
   public ResponseEntity tratarErro404() {
     return ResponseEntity.notFound().build();
+  }
+
+  @ExceptionHandler(InvalidDataAccessApiUsageException.class)
+  public ResponseEntity<String> tratarErroIdNulo(InvalidDataAccessApiUsageException ex) {
+    return ResponseEntity.badRequest().body("O id informado não pode ser nulo. Verifique os campos enviados.");
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
